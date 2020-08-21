@@ -3,14 +3,13 @@
 #### Endpoints
 
 | METHOD   | USAGE                      | ENDPOINT                            |
-|----------|:--------------------------:|------------------------------------:|
-| POST     | CREATE AN CANDIDATE        | api/candidates/                     |
-| GET      | GET SEVERAL CANDIDATES     | api/candidates/                     |
-| GET      | GET AN CANDIDATE'S QUEUES  | api/candidates/:candidateId/queues  |
-| PUT      | UPDATE AN CANDIDATE        | api/candidates/                     |
-| POST     | CREATE AN QUEUE            | api/queues/:candidateId             |
-| GET      | GET AN QUEUE               | api/queues/:queueId                 |
-
+|----------|----------------------------|-------------------------------------|
+| POST     | Create an candidate        | api/candidates/                     |
+| GET      | Get several candidates     | api/candidates/                     |
+| GET      | Get an candidate's queues  | api/candidates/:candidateId/queues  |
+| PUT      | Update an candidate        | api/candidates/                     |
+| POST     | Create an queue            | api/queues/:candidateId             |
+| GET      | Get an queue               | api/queues/:queueId                 |
 
 #### Prerequisites
 
