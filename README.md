@@ -2,13 +2,15 @@
 
 #### Endpoints
 
-- [x] (POST) CREATE AN CANDIDATE        :  api/candidates/
-- [ ] (GET) GET SEVERAL CANDIDATES      :  api/candidates/
-- [ ] (GET) GET AN CANDIDATE'S QUEUES   :  api/candidates/:candidateId/queues
-- [ ] (PUT) UPDATE AN CANDIDATE         :  api/candidates/
+| METHOD   | USAGE                      | ENDPOINT                            |
+|----------|:--------------------------:|------------------------------------:|
+| POST     | CREATE AN CANDIDATE        | api/candidates/                     |
+| GET      | GET SEVERAL CANDIDATES     | api/candidates/                     |
+| GET      | GET AN CANDIDATE'S QUEUES  | api/candidates/:candidateId/queues  |
+| PUT      | UPDATE AN CANDIDATE        | api/candidates/                     |
+| POST     | CREATE AN QUEUE            | api/queues/:candidateId             |
+| GET      | GET AN QUEUE               | api/queues/:queueId                 |
 
-- [ ] (POST) CREATE AN QUEUE            :  api/queues/:candidateId
-- [ ] (GET) GET AN QUEUE                :  api/queues/:queueId
 
 #### Prerequisites
 
