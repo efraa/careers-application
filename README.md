@@ -1,15 +1,15 @@
-# Careers Application API 🚀
+# Careers Application API
 
 #### Endpoints
 
-| METHOD   | USAGE                      | ENDPOINT                            |
-|----------|----------------------------|-------------------------------------|
-| POST     | Create an candidate        | api/candidates/                     |
-| GET      | Get several candidates     | api/candidates/                     |
-| GET      | Get an candidate's queues  | api/candidates/:candidateId/queues  |
-| PUT      | Update an candidate        | api/candidates/                     |
-| POST     | Create an queue            | api/queues/:candidateId             |
-| GET      | Get an queue               | api/queues/:queueId                 |
+| METHOD   | USAGE                      | ENDPOINT                            | COMPLETE   |
+|----------|----------------------------|-------------------------------------|:----------:|
+| POST     | Create an candidate        | api/candidates/                     | [x] Done   |
+| GET      | Get several candidates     | api/candidates/                     | [ ] Todo   |
+| GET      | Get an candidate's queues  | api/candidates/:candidateId/queues  | [ ] Todo   |
+| PUT      | Update an candidate        | api/candidates/:candidateId         | [ ] Todo   |
+| POST     | Create an queue            | api/queues/:candidateId             | [ ] Todo   |
+| GET      | Get an queue               | api/queues/:queueId                 | [ ] Todo   |
 
 #### Prerequisites
 
