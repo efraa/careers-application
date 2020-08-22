@@ -1,9 +1,16 @@
 import { BaseRoutes } from '../http/BaseRoutes'
-import { ResponseHandler, RouteMethod, statusCodes } from '../http'
+import {
+  ErrorHandler,
+  ResponseHandler,
+  RouteMethod,
+  statusCodes,
+} from '../http'
 import { Response, RequestHandler, Request } from 'express'
 import { CandidateController } from '../controllers/CandidateController'
 import { validators } from '../utils/validators/CandidateValidators'
 import { Endpoints } from './Endpoints'
+import { CandidateAttachment } from '../middlewares/CandidateAttachment'
+import { CandidateMessages } from '../utils/messages/CandidateMessages'
 
 export class CandidateRoutes extends BaseRoutes {
   constructor(
@@ -15,20 +22,30 @@ export class CandidateRoutes extends BaseRoutes {
   }
 
   addRoutes() {
-    this.api.get(Endpoints.candidates.collection, this.create)
-    // this.api
-    //   .route(Endpoints.candidates.like)
-    //   .all([isAuthorized, ...validators.like])
-    //   .candidate(this.like)
-    //   .delete(this.unlike)
+    this.api
+      .route(Endpoints.candidates.collection)
+      .post([CandidateAttachment, ...validators.create], this.create)
   }
 
   create: RequestHandler = (req: Request, res: Response) =>
     RouteMethod.build({
       resolve: async () => {
-        return res
-          .status(statusCodes.CREATE)
-          .send(ResponseHandler.build({ msg: 'Test' }, false))
+        if (!req.file)
+          throw ErrorHandler.build(
+            statusCodes.BAD_REQUEST,
+            CandidateMessages.INVALID_FILE_EXT
+          )
+
+        return this._candidateController
+          .create(req.body, {
+            path: req.file.path,
+            name: req.file.filename,
+          })
+          .then(candidate =>
+            res
+              .status(statusCodes.CREATE)
+              .send(ResponseHandler.build(candidate, false))
+          )
       },
       req,
       res,
