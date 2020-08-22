@@ -29,4 +29,12 @@ const update = [
     .normalizeEmail({ all_lowercase: true }),
 ]
 
-export const validators = { create, update }
+const subscribe = [
+  check('recruiterId', VALIDATOR.DEFAULT)
+    .isLength({
+      min: 1,
+    })
+    .toInt(),
+]
+
+export const validators = { create, update, subscribe }
