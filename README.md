@@ -1,5 +1,10 @@
 # Careers Application API
 
+> The purpose is to streamline the position application process by
+> sending a personalized email to the recruiter.
+
+> The Application assumes that your email is a **Gmail** account.
+
 #### Endpoints
 
 | METHOD   | USAGE                      | ENDPOINT                            | COMPLETE   |
