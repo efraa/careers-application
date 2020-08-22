@@ -6,12 +6,5 @@ export const CandidateAttachment = multer({
     fileSize: 55000000,
   },
   fileFilter: (req, file, cb) =>
-    cb(
-      null,
-      validateExt(
-        /doc|DOC|pdf|PDF|txt|docx|xls|xlsx/,
-        file.mimetype,
-        file.originalname
-      )
-    ),
+    cb(null, validateExt(/pdf|PDF/, file.mimetype, file.originalname)),
 }).single('attachment')
