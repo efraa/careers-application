@@ -5,9 +5,9 @@
 | METHOD   | USAGE                      | ENDPOINT                            | COMPLETE   |
 |----------|----------------------------|-------------------------------------|:----------:|
 | POST     | Create an candidate        | api/candidates/                     | [x] Done   |
-| GET      | Get several candidates     | api/candidates/                     | [ ] Todo   |
+| GET      | Get several candidates     | api/candidates/                     | [x] Done   |
 | GET      | Get an candidate's queues  | api/candidates/:candidateId/queues  | [ ] Todo   |
-| PUT      | Update an candidate        | api/candidates/:candidateId         | [ ] Todo   |
+| PUT      | Update an candidate        | api/candidates/:candidateId         | [x] Done   |
 | POST     | Create an queue            | api/queues/:candidateId             | [ ] Todo   |
 | GET      | Get an queue               | api/queues/:queueId                 | [ ] Todo   |
 
