@@ -1,7 +1,7 @@
 const candidates = {
   resource: '/candidates',
   collection: '/',
-  create: '/:wallId',
+  queues: '/:candidateId/queues',
   document: '/:candidateId',
 }
 
