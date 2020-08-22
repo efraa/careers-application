@@ -17,6 +17,8 @@ export class CandidateService {
   mapToEntity = async (payload: any): Promise<Candidate> =>
     this._candidateMapper.mapToEntity(payload)
 
+  getById = async (id: number) => this._candidateRepository.getById(id)
+
   getByEmail = async (email: string) =>
     this._candidateRepository.getByEmail(email)
 
@@ -28,7 +30,7 @@ export class CandidateService {
   update = async (candidate: Candidate, data: any) =>
     this._candidateRepository
       .update(candidate, data)
-      .then(user => this._candidateMapper.mapToDTO(user))
+      .then(updates => this._candidateMapper.mapToDTO(updates))
 
   collection = async (query: { page?: number; perPage?: number }) => {
     const { page, perPage } = query
