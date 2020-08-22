@@ -1,5 +1,5 @@
 import { Mapper } from 'ts-simple-automapper'
-import { Candidate } from '../../database/entities/Candidate'
+import { Candidate } from '../../../database/entities/Candidate'
 import { CandidateRepository } from '../../repositories/CandidateRepository'
 import { CandidateDTO } from '../dtos/CandidateDTO'
 

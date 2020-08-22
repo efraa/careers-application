@@ -1,15 +1,15 @@
-import { BaseRoutes } from '../http/BaseRoutes'
+import { BaseRoutes } from '../../http/BaseRoutes'
 import {
   ErrorHandler,
   ResponseHandler,
   RouteMethod,
   statusCodes,
-} from '../http'
+} from '../../http'
 import { Response, RequestHandler, Request } from 'express'
 import { CandidateController } from '../controllers/CandidateController'
 import { validators } from '../utils/validators/CandidateValidators'
 import { Endpoints } from './Endpoints'
-import { CandidateAttachment } from '../middlewares/CandidateAttachment'
+import { CandidateAttachment } from '../../middlewares/CandidateAttachment'
 import { CandidateMessages } from '../utils/messages/CandidateMessages'
 
 export class CandidateRoutes extends BaseRoutes {

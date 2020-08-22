@@ -2,11 +2,11 @@ import { Router } from 'express'
 import { BaseRoutes } from './BaseRoutes'
 
 // Modules
-import { candidateModule } from '../modules/CandidateModule'
+import { candidateModule } from '../app/modules/CandidateModule'
 
 // Routes
-import { Endpoints } from '../routes/Endpoints'
-import { CandidateRoutes } from '../routes/CandidateRoutes'
+import { Endpoints } from '../app/routes/Endpoints'
+import { CandidateRoutes } from '../app/routes/CandidateRoutes'
 
 export class Routes {
   static router: Router = Router()

@@ -1,12 +1,12 @@
-import { config } from '../config'
-import { Candidate } from '../database/entities/Candidate'
+import { config } from '../../config'
+import { Candidate } from '../../database/entities/Candidate'
 import { CandidateMapper } from '../domain/mappers/CandidateMapper'
 import { CandidateRepository } from '../repositories/CandidateRepository'
 import { CandidateDTO } from '../domain/dtos/CandidateDTO'
-import { ErrorHandler, statusCodes } from '../http'
+import { ErrorHandler, statusCodes } from '../../http'
 import { CandidateMessages } from '../utils/messages/CandidateMessages'
-import { Cloudinary } from '../helpers/Cloudinary'
-import { destroyFiles } from '../helpers/DestroyFiles'
+import { Cloudinary } from '../../helpers/Cloudinary'
+import { destroyFiles } from '../../helpers/DestroyFiles'
 
 export class CandidateService {
   constructor(
