@@ -5,6 +5,12 @@ const candidates = {
   document: '/:candidateId',
 }
 
+const recruiters = {
+  resource: '/recruiters',
+  collection: '/',
+}
+
 export const Endpoints = {
   candidates,
+  recruiters,
 }
