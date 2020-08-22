@@ -23,10 +23,7 @@ export class CandidateModule {
 
   get service(): CandidateService {
     return !this._service
-      ? (this._service = new CandidateService(
-          this.repository,
-          this.mapper,
-        ))
+      ? (this._service = new CandidateService(this.repository, this.mapper))
       : this._service
   }
 
