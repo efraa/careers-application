@@ -19,9 +19,13 @@ export class Candidate extends BaseEntity {
   email: string
 
   @Column({
+    type: 'simple-json',
     nullable: true,
   })
-  attachment: string
+  attachment: {
+    path: string
+    id: string
+  }
 
   @Column({
     transformer: [capitalize],
