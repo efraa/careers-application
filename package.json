@@ -34,6 +34,10 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
+    "@types/multer": "^1.4.4",
+    "bull": "^3.13.0",
+    "bull-board": "^0.6.0",
+    "cloudinary": "^1.22.0",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -41,14 +45,13 @@
     "express-validator": "^6.4.0",
     "handlebars": "^4.7.3",
     "morgan": "^1.9.1",
+    "multer": "^1.4.2",
+    "nodemailer": "^6.4.11",
     "pg": "^8.2.1",
     "reflect-metadata": "^0.1.13",
     "ts-simple-automapper": "^1.0.2",
     "typeorm": "^0.2.24",
-    "winston": "^3.2.1",
-    "nodemailer": "^6.4.11",
-    "bull": "^3.13.0",
-    "bull-board": "^0.6.0"
+    "winston": "^3.2.1"
   },
   "repository": {
     "type": "git",
