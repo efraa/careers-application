@@ -25,6 +25,13 @@ export class CandidateRoutes extends BaseRoutes {
     this.api
       .route(Endpoints.candidates.collection)
       .post([CandidateAttachment, ...validators.create], this.create)
+      .get(this.collection)
+
+    this.api.put(
+      Endpoints.candidates.document,
+      [CandidateAttachment, ...validators.update],
+      this.update
+    )
   }
 
   create: RequestHandler = (req: Request, res: Response) =>
@@ -47,6 +54,46 @@ export class CandidateRoutes extends BaseRoutes {
               .send(ResponseHandler.build(candidate, false))
           )
       },
+      req,
+      res,
+    })
+
+  collection: RequestHandler = (req: Request, res: Response) =>
+    RouteMethod.build({
+      resolve: async () => {
+        const { page, perPage } = req.query
+        const collection = await this._candidateController.collection({
+          page: page as any,
+          perPage: perPage as any,
+        })
+        if (collection)
+          return res
+            .status(statusCodes.OK)
+            .send(ResponseHandler.build(collection, false))
+      },
+      req,
+      res,
+    })
+
+  update: RequestHandler = (req: Request, res: Response) =>
+    RouteMethod.build({
+      resolve: async () =>
+        this._candidateController
+          .update(
+            parseInt(req.params.candidateId as string),
+            req.body,
+            req?.file
+              ? {
+                  path: req?.file.path,
+                  name: req?.file.filename,
+                }
+              : undefined
+          )
+          .then(candidate =>
+            res
+              .status(statusCodes.OK)
+              .send(ResponseHandler.build(candidate, false))
+          ),
       req,
       res,
     })
