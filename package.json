@@ -16,6 +16,7 @@
   "author": "Efrain Peralta",
   "license": "ISC",
   "devDependencies": {
+    "@types/multer": "^1.4.4",
     "@types/bull": "^3.12.1",
     "@types/compression": "^1.7.0",
     "@types/cors": "^2.8.6",
@@ -34,7 +35,6 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@types/multer": "^1.4.4",
     "bull": "^3.13.0",
     "bull-board": "^0.6.0",
     "cloudinary": "^1.22.0",
@@ -55,6 +55,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Efraa/sayek-api.git"
+    "url": "https://github.com/Efraa/careers-application.git"
   }
 }
