@@ -1,9 +1,10 @@
-import { Entity, Column, OneToMany } from 'typeorm'
+import { Entity, Column, OneToMany, ManyToMany, JoinTable } from 'typeorm'
 import { lowercase, capitalize, encode } from '../transformers'
 import { BaseEntity } from '../BaseEntity'
 
 // Relations
 import { Queue } from './Queue'
+import { Recruiter } from './Recruiter'
 
 @Entity({ name: 'candidates' })
 export class Candidate extends BaseEntity {
@@ -47,4 +48,8 @@ export class Candidate extends BaseEntity {
     onDelete: 'SET NULL',
   })
   queues: Queue[]
+
+  @ManyToMany(type => Recruiter)
+  @JoinTable({ name: 'candidate_recruiters_joins' })
+  recruiters: Recruiter[]
 }
