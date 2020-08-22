@@ -32,6 +32,12 @@ export class CandidateRoutes extends BaseRoutes {
       [CandidateAttachment, ...validators.update],
       this.update
     )
+
+    this.api
+      .route(Endpoints.candidates.recruiters)
+      .get(this.recruiters)
+      .put(validators.subscribe, this.subscribe)
+      .delete(validators.subscribe, this.unsubscribe)
   }
 
   create: RequestHandler = (req: Request, res: Response) =>
@@ -93,6 +99,48 @@ export class CandidateRoutes extends BaseRoutes {
             res
               .status(statusCodes.OK)
               .send(ResponseHandler.build(candidate, false))
+          ),
+      req,
+      res,
+    })
+
+  subscribe: RequestHandler = (req: Request, res: Response) =>
+    RouteMethod.build({
+      resolve: async () =>
+        this._candidateController
+          .subscribe(parseInt(req.params.candidateId), req.body.recruiterId)
+          .then(subscribed =>
+            res
+              .status(statusCodes.OK)
+              .send(ResponseHandler.build(subscribed, false))
+          ),
+      req,
+      res,
+    })
+
+  unsubscribe: RequestHandler = (req: Request, res: Response) =>
+    RouteMethod.build({
+      resolve: async () =>
+        this._candidateController
+          .unsubscribe(parseInt(req.params.candidateId), req.body.recruiterId)
+          .then(unsubscribed =>
+            res
+              .status(statusCodes.OK)
+              .send(ResponseHandler.build(unsubscribed, false))
+          ),
+      req,
+      res,
+    })
+
+  recruiters: RequestHandler = (req: Request, res: Response) =>
+    RouteMethod.build({
+      resolve: async () =>
+        this._candidateController
+          .recruiters(parseInt(req.params.candidateId))
+          .then(recruiters =>
+            res
+              .status(statusCodes.OK)
+              .send(ResponseHandler.build(recruiters, false))
           ),
       req,
       res,

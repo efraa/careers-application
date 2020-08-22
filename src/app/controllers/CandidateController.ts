@@ -59,4 +59,46 @@ export class CandidateController {
 
   collection = async (query: { page?: number; perPage?: number }) =>
     this._candidateService.collection(query)
+
+  subscribe = async (candidateId: number, recruiterId: number) => {
+    const subscribed = await this._candidateService.subscribe(
+      candidateId,
+      recruiterId
+    )
+
+    if (!subscribed)
+      throw ErrorHandler.build(
+        statusCodes.BAD_REQUEST,
+        CandidateMessages.SUBSCRIBE_FAIL
+      )
+
+    return subscribed
+  }
+
+  unsubscribe = async (candidateId: number, recruiterId: number) => {
+    const unsubscribed = await this._candidateService.unsubscribe(
+      candidateId,
+      recruiterId
+    )
+
+    if (!unsubscribed)
+      throw ErrorHandler.build(
+        statusCodes.BAD_REQUEST,
+        CandidateMessages.UNSUBSCRIBE_FAIL
+      )
+
+    return unsubscribed
+  }
+
+  recruiters = async (candidateId: number) => {
+    const collection = await this._candidateService.recruiters(candidateId)
+
+    if (!collection)
+      throw ErrorHandler.build(
+        statusCodes.NOT_FOUND,
+        CandidateMessages.NOT_FOUND
+      )
+
+    return collection
+  }
 }

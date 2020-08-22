@@ -32,4 +32,35 @@ export class CandidateRepository {
       pages: Math.ceil(count / perPage),
     }
   }
+
+  recruiters = async (id: number) =>
+    this.repo
+      .createQueryBuilder('candidate')
+      .leftJoinAndSelect('candidate.recruiters', 'recruiters')
+      .where('candidate.id = :id', { id })
+      .select([
+        'candidate.id',
+        'recruiters.id',
+        'recruiters.name',
+        'recruiters.email',
+      ])
+      .getOne()
+
+  subscribe = async (candidateId: number, recruiterId: number) =>
+    this.repo
+      .createQueryBuilder()
+      .relation(Candidate, 'recruiters')
+      .of(candidateId)
+      .add(recruiterId)
+      .then(() => ({ candidateId, recruiterId }))
+      .catch(() => undefined)
+
+  unsubscribe = async (candidateId: number, recruiterId: number) =>
+    this.repo
+      .createQueryBuilder()
+      .relation(Candidate, 'recruiters')
+      .of(candidateId)
+      .remove(recruiterId)
+      .then(() => ({ candidateId, recruiterId }))
+      .catch(() => undefined)
 }

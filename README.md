@@ -12,10 +12,10 @@ sending a personalized email to the recruiter.
 | POST     | Create an candidate              | api/candidates/                         | ✅         |
 | GET      | Get several candidates           | api/candidates/                         | ✅         |
 | PUT      | Update an candidate              | api/candidates/:candidateId             | ✅         |
+| PUT      | Add an candidate's recruiter     | api/candidates/:candidateId/recruiters  | ✅         |
+| DELETE   | Delete an candidate's recruiter  | api/candidates/:candidateId/recruiters  | ✅         |
+| GET      | Get an candidate's recruiters    | api/candidates/:candidateId/recruiters  | ✅         |
 | GET      | Get an candidate's queues        | api/candidates/:candidateId/queues      |            |
-| PUT      | Add an candidate's recruiter     | api/candidates/:candidateId/recruiters  |            |
-| DELETE   | Delete an candidate's recruiter  | api/candidates/:candidateId/recruiters  |            |
-| GET      | Get an candidate's recruiters    | api/candidates/:candidateId/recruiters  |            |
 | POST     | Create an recruiter              | api/recruiters/                         | ✅         |
 | GET      | Get several recruiters           | api/recruiters/                         | ✅         |
 | POST     | Create an queue                  | api/queues/:candidateId                 |            |

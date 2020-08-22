@@ -72,4 +72,13 @@ export class CandidateService {
 
     return { id, path }
   }
+
+  recruiters = async (candidateId: number) =>
+    this._candidateRepository.recruiters(candidateId)
+
+  subscribe = async (candidateId: number, recruiterId: number) =>
+    this._candidateRepository.subscribe(candidateId, recruiterId)
+
+  unsubscribe = async (candidateId: number, recruiterId: number) =>
+    this._candidateRepository.unsubscribe(candidateId, recruiterId)
 }
