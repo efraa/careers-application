@@ -4,8 +4,8 @@ coverage
 .env
 dist
 build
-data
-/uploads
+/uploads/*.pdf
+/uploads/*.PDF
 package-lock.json
 
 # Logs
