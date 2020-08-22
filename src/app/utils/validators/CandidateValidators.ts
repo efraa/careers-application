@@ -1,5 +1,6 @@
 import { check } from 'express-validator'
 import { CandidateMessages } from '../messages/CandidateMessages'
+import { commonValidators } from './CommonValidators'
 
 const { VALIDATOR } = CandidateMessages
 
@@ -15,15 +16,7 @@ const common = [
   }),
 ]
 
-const create = [
-  ...common,
-  check('name', VALIDATOR.DEFAULT).isLength({
-    min: 2,
-  }),
-  check('email', VALIDATOR.EMAIL)
-    .isEmail()
-    .normalizeEmail({ all_lowercase: true }),
-]
+const create = [...commonValidators, ...common]
 
 const update = [
   ...common,
