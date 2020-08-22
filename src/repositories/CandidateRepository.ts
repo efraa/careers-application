@@ -13,6 +13,8 @@ export class CandidateRepository {
 
   getByEmail = async (email: string) => this.repo.findOne({ email })
 
+  getById = async (id: number) => this.repo.findOne({ id })
+
   update = async (candidate: Candidate, data: any) =>
     this.save(this.repo.merge(candidate, data))
 
@@ -21,6 +23,7 @@ export class CandidateRepository {
     const [rows, count] = await this.repo.findAndCount({
       skip: perPage * page - perPage,
       take: perPage,
+      cache: true,
     })
 
     return {
