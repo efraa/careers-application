@@ -1,5 +1,5 @@
 import { Entity, Column, OneToMany, ManyToMany, JoinTable } from 'typeorm'
-import { lowercase, capitalize, encode } from '../transformers'
+import { lowercase, encode } from '../transformers'
 import { BaseEntity } from '../BaseEntity'
 
 // Relations
@@ -8,9 +8,7 @@ import { Recruiter } from './Recruiter'
 
 @Entity({ name: 'candidates' })
 export class Candidate extends BaseEntity {
-  @Column({
-    transformer: [capitalize],
-  })
+  @Column()
   name: string
 
   @Column({
@@ -19,9 +17,11 @@ export class Candidate extends BaseEntity {
   })
   email: string
 
+  @Column()
+  pass: string
+
   @Column({
     type: 'simple-json',
-    nullable: true,
   })
   attachment: {
     path: string
@@ -29,7 +29,7 @@ export class Candidate extends BaseEntity {
   }
 
   @Column({
-    transformer: [capitalize],
+    transformer: [lowercase],
     nullable: true,
   })
   position: string
@@ -39,17 +39,15 @@ export class Candidate extends BaseEntity {
   })
   message: string
 
-  @Column({
-    nullable: true,
-  })
+  @Column()
   subject: string
 
-  @OneToMany(type => Queue, q => q.candidateId, {
+  @OneToMany(() => Queue, q => q.candidateId, {
     onDelete: 'SET NULL',
   })
   queues: Queue[]
 
-  @ManyToMany(type => Recruiter)
+  @ManyToMany(() => Recruiter)
   @JoinTable({ name: 'candidate_recruiters_joins' })
   recruiters: Recruiter[]
 }

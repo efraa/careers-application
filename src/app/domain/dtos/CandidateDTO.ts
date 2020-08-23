@@ -8,6 +8,9 @@ export class CandidateDTO {
   name: string
 
   @MapProp()
+  pass: string
+
+  @MapProp()
   email: string
 
   @MapProp()
