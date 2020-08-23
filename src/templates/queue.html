@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Forgot password?</title>
+  <style type="text/css">
+    html,
+    body {
+      padding: 0;
+      margin: 0;
+      font-weight: 400;
+      color: #363636;
+      font-family: Tahoma, Helvetica, sans-serif;
+    }
+
+    .body {
+      padding: 50px 16px;
+    }
+
+    .bg-gray {
+      background-color: #F5F8FA;
+    }
+
+    .bg-white {
+      background-color: white;
+    }
+
+    .container {
+      background-color: white;
+      padding: 32px;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 600px;
+      margin: auto;
+      padding-top: 16px;
+    }
+
+    .content-body {
+      min-height: 150px;
+      display: block;
+    }
+
+    .header {
+      padding-bottom: 16px;
+      border-bottom: solid 1px #F5F8FA;
+      margin-bottom: 16px;
+      display: block;
+      text-align: center;
+    }
+
+    .header img {
+      margin: auto;
+      max-width: 108px;
+      display: inline-block;
+    }
+
+    h3,
+    h1,
+    h2 {
+      margin: 0 !important;
+    }
+
+    h3 {
+      font-size: 24px !important;
+    }
+
+    h5 {
+      font-size: 18px !important;
+    }
+
+    p {
+      font-size: 16px !important;
+      line-height: 24px;
+    }
+
+    .signature {
+      margin-top: 16px;
+      display: block;
+    }
+  </style>
+</head>
+
+<body class="bg-gray">
+  <div class="body">
+    <table class="container">
+      <tr class="content">
+        <td class="content-body">
+          <table>
+            <tr>
+              <td>
+                <h3>Hola, {{ name }}.</h3>
+                <h5>Todos los correos electrónicos de la ronda #{{ id }} se enviaron con éxito el {{ date }}.</h5>
+                <p>
+                  Recibe este correo electrónico porque usted (u otra persona) solicita que se
+                  envíen correos electrónicos automáticos desde nuestra aplicación.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td class="signature">
+                <p>
+                  By, <br />
+                  <b>Careers Application Team. <a href="https://github.com/Efraa">(Powered by Efraa Peralta ®)</a></b>
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </div>
+</body>
+
+</html>
