@@ -2,6 +2,7 @@ import { CandidateRepository } from '../repositories/CandidateRepository'
 import { CandidateMapper } from '../domain/mappers/CandidateMapper'
 import { CandidateService } from '../services/CandidateService'
 import { CandidateController } from '../controllers/CandidateController'
+import { queueModule } from './QueueModule'
 
 export class CandidateModule {
   private _repository: CandidateRepository
@@ -29,7 +30,10 @@ export class CandidateModule {
 
   get controller(): CandidateController {
     return !this._controller
-      ? (this._controller = new CandidateController(this.service))
+      ? (this._controller = new CandidateController(
+          this.service,
+          queueModule.service
+        ))
       : this._controller
   }
 }
