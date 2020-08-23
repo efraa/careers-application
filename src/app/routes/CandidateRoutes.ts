@@ -39,7 +39,10 @@ export class CandidateRoutes extends BaseRoutes {
       .put(validators.subscribe, this.subscribe)
       .delete(validators.subscribe, this.unsubscribe)
 
-    this.api.route(Endpoints.candidates.queues).post(this.createQueue)
+    this.api
+      .route(Endpoints.candidates.queues)
+      .post(this.createQueue)
+      .get(this.queues)
   }
 
   create: RequestHandler = (req: Request, res: Response) =>
@@ -73,6 +76,24 @@ export class CandidateRoutes extends BaseRoutes {
         const collection = await this._candidateController.collection({
           page: page as any,
           perPage: perPage as any,
+        })
+        if (collection)
+          return res
+            .status(statusCodes.OK)
+            .send(ResponseHandler.build(collection, false))
+      },
+      req,
+      res,
+    })
+
+  queues: RequestHandler = (req: Request, res: Response) =>
+    RouteMethod.build({
+      resolve: async () => {
+        const { page, perPage } = req.query
+        const collection = await this._candidateController.queues({
+          page: page as any,
+          perPage: perPage as any,
+          candidateId: parseInt(req.params.candidateId),
         })
         if (collection)
           return res

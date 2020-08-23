@@ -20,7 +20,7 @@ export class QueueRepository {
   }) => {
     const { perPage, page, candidateId } = query
     const [rows, count] = await this.repo.findAndCount({
-      where: { id: candidateId },
+      where: { candidateId },
       skip: perPage * page - perPage,
       take: perPage,
       cache: true,

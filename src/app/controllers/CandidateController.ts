@@ -107,6 +107,12 @@ export class CandidateController {
     return collection
   }
 
+  queues = async (query: {
+    page?: number
+    perPage?: number
+    candidateId: number
+  }) => this._queueService.collection(query)
+
   createQueue = async (candidateId: number) => {
     const candidateRecruiters = await this._candidateService.recruiters(
       candidateId
