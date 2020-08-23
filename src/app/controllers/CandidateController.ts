@@ -113,6 +113,18 @@ export class CandidateController {
     candidateId: number
   }) => this._queueService.collection(query)
 
+  getQueue = async (queueId: number, candidateId: number) => {
+    const queue = await this._queueService.getById(queueId, candidateId)
+
+    if (!queue)
+      throw ErrorHandler.build(
+        statusCodes.NOT_FOUND,
+        CandidateMessages.QUEUES_NOT_FOUND
+      )
+
+    return queue
+  }
+
   createQueue = async (candidateId: number) => {
     const candidateRecruiters = await this._candidateService.recruiters(
       candidateId

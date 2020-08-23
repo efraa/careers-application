@@ -17,7 +17,7 @@ export class Queue extends BaseEntity {
   @JoinColumn()
   candidate: Candidate
 
-  @OneToMany(() => Email, email => email.queueId, {
+  @OneToMany(() => Email, email => email.queue, {
     onDelete: 'SET NULL',
   })
   emails: Email[]

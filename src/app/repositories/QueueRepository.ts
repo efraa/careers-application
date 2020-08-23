@@ -2,6 +2,13 @@ import { Repository, getRepository } from 'typeorm'
 import { Queue } from '../../database/entities/Queue'
 export class QueueRepository {
   private repo: Repository<Queue>
+  private fields = [
+    'queue.id',
+    'queue.createAt',
+    'emails.id',
+    'emails.subject',
+    'emails.to',
+  ]
 
   constructor() {
     this.repo = getRepository(Queue)
@@ -11,7 +18,16 @@ export class QueueRepository {
 
   save = async (queue: Queue) => this.repo.save(queue)
 
-  getById = async (id: number) => this.repo.findOne({ id })
+  getById = async (id: number, candidateId: number) =>
+    this.repo
+      .createQueryBuilder('queue')
+      .leftJoinAndSelect('queue.emails', 'emails')
+      .where('queue.id = :id and queue.candidateId = :candidateId', {
+        id,
+        candidateId,
+      })
+      .select(this.fields)
+      .getOne()
 
   collection = async (query: {
     page: number

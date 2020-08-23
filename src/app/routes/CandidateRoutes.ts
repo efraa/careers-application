@@ -43,6 +43,8 @@ export class CandidateRoutes extends BaseRoutes {
       .route(Endpoints.candidates.queues)
       .post(this.createQueue)
       .get(this.queues)
+
+    this.api.get(Endpoints.candidates.queue, this.getQueue)
   }
 
   create: RequestHandler = (req: Request, res: Response) =>
@@ -100,6 +102,21 @@ export class CandidateRoutes extends BaseRoutes {
             .status(statusCodes.OK)
             .send(ResponseHandler.build(collection, false))
       },
+      req,
+      res,
+    })
+
+  getQueue: RequestHandler = (req: Request, res: Response) =>
+    RouteMethod.build({
+      resolve: async () =>
+        this._candidateController
+          .getQueue(
+            parseInt(req.params.queueId),
+            parseInt(req.params.candidateId)
+          )
+          .then(queue =>
+            res.status(statusCodes.OK).send(ResponseHandler.build(queue, false))
+          ),
       req,
       res,
     })

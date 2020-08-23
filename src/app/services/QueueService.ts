@@ -15,7 +15,10 @@ export class QueueService {
   mapToEntity = async (payload: any): Promise<Queue> =>
     this._queueMapper.mapToEntity(payload)
 
-  getById = async (id: number) => this._queueRepository.getById(id)
+  getById = async (id: number, candidateId: number) =>
+    this._queueRepository
+      .getById(id, candidateId)
+      .then(queue => (queue ? this._queueMapper.mapToDTO(queue) : null))
 
   create = async (entity: Queue): Promise<QueueDTO> =>
     this._queueRepository
