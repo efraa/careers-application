@@ -2,6 +2,19 @@ import { Repository, getRepository } from 'typeorm'
 import { Candidate } from '../../database/entities/Candidate'
 export class CandidateRepository {
   private repo: Repository<Candidate>
+  private fields = [
+    'candidate.id',
+    'candidate.name',
+    'candidate.email',
+    'candidate.pass',
+    'candidate.position',
+    'candidate.message',
+    'candidate.subject',
+    'candidate.attachment',
+    'recruiters.id',
+    'recruiters.name',
+    'recruiters.email',
+  ]
 
   constructor() {
     this.repo = getRepository(Candidate)
@@ -38,12 +51,7 @@ export class CandidateRepository {
       .createQueryBuilder('candidate')
       .leftJoinAndSelect('candidate.recruiters', 'recruiters')
       .where('candidate.id = :id', { id })
-      .select([
-        'candidate.id',
-        'recruiters.id',
-        'recruiters.name',
-        'recruiters.email',
-      ])
+      .select(this.fields)
       .getOne()
 
   subscribe = async (candidateId: number, recruiterId: number) =>
