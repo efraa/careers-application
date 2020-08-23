@@ -2,6 +2,7 @@ const candidates = {
   resource: '/candidates',
   collection: '/',
   queues: '/:candidateId/queues',
+  queue: '/:candidateId/queues/:queueId',
   recruiters: '/:candidateId/recruiters',
   document: '/:candidateId',
 }
