@@ -16,7 +16,13 @@ const common = [
   }),
 ]
 
-const create = [...commonValidators, ...common]
+const create = [
+  ...commonValidators,
+  ...common,
+  check('pass', VALIDATOR.DEFAULT).isLength({
+    min: 4,
+  }),
+]
 
 const update = [
   ...common,
@@ -27,6 +33,9 @@ const update = [
     .optional()
     .isEmail()
     .normalizeEmail({ all_lowercase: true }),
+  check('pass', VALIDATOR.DEFAULT).isLength({
+    min: 4,
+  }),
 ]
 
 const subscribe = [
