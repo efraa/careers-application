@@ -9,7 +9,7 @@ import morgan from 'morgan'
 
 import { Worker } from './workers'
 import BullBoard from 'bull-board'
-BullBoard.setQueues(Worker.queues.map(job => job.queue))
+BullBoard.setQueues(Worker.queues.map(q => q.queue))
 
 const app: Application = express()
 

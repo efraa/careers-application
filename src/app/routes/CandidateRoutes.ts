@@ -38,6 +38,8 @@ export class CandidateRoutes extends BaseRoutes {
       .get(this.recruiters)
       .put(validators.subscribe, this.subscribe)
       .delete(validators.subscribe, this.unsubscribe)
+
+    this.api.route(Endpoints.candidates.queues).post(this.createQueue)
   }
 
   create: RequestHandler = (req: Request, res: Response) =>
@@ -141,6 +143,18 @@ export class CandidateRoutes extends BaseRoutes {
             res
               .status(statusCodes.OK)
               .send(ResponseHandler.build(recruiters, false))
+          ),
+      req,
+      res,
+    })
+
+  createQueue: RequestHandler = (req: Request, res: Response) =>
+    RouteMethod.build({
+      resolve: async () =>
+        this._candidateController
+          .createQueue(parseInt(req.params.candidateId))
+          .then(queue =>
+            res.status(statusCodes.OK).send(ResponseHandler.build(queue, false))
           ),
       req,
       res,

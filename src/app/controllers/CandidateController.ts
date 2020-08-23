@@ -1,9 +1,14 @@
 import { CandidateService } from '../services/CandidateService'
 import { ErrorHandler, statusCodes } from '../../http'
 import { CandidateMessages } from '../utils/messages/CandidateMessages'
+import { QueueService } from '../services/QueueService'
+import { Worker } from '../../workers'
 
 export class CandidateController {
-  constructor(private _candidateService: CandidateService) {}
+  constructor(
+    private _candidateService: CandidateService,
+    private _queueService: QueueService
+  ) {}
 
   checkEmail = async (email: string) => {
     const emailExists = await this._candidateService.getByEmail(email)
@@ -100,5 +105,29 @@ export class CandidateController {
       )
 
     return collection
+  }
+
+  createQueue = async (candidateId: number) => {
+    const candidateRecruiters = await this._candidateService.recruiters(
+      candidateId
+    )
+    if (!candidateRecruiters)
+      throw ErrorHandler.build(
+        statusCodes.NOT_FOUND,
+        CandidateMessages.NOT_FOUND
+      )
+
+    const queue = await this._queueService
+      .mapToEntity({ candidateId })
+      .then(async queue => this._queueService.create(queue))
+
+    if (queue) {
+      await Worker.EmailQueue.add({
+        queue,
+        candidateRecruiters,
+      })
+    }
+
+    return queue
   }
 }
