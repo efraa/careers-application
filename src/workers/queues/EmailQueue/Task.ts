@@ -1,8 +1,7 @@
 import { emailService } from '../../services/EmailService'
 import { DatabaseConnection } from '../../../database/DatabaseConnection'
 import { emailModule } from '../../../app/modules/EmailModule'
-import { formatDate } from '../../utils'
-import { CandidateMessages } from '../../../app/utils/messages/CandidateMessages'
+import { completeQueue } from './CompleteQueue'
 
 export const EmailTask = {
   key: 'EMAIL_QUEUE',
@@ -62,28 +61,9 @@ export const EmailTask = {
           }
         })
 
-        Promise.all(results).then(async () => {
-          await emailService({
-            auth: {
-              user: email,
-              pass,
-            },
-            message: {
-              from: `${name} <${email}>`,
-              to: email,
-              subject: CandidateMessages.QUEUES_COMPLETE.replace(
-                /{ID}|{DATE}/gi,
-                m => (m === '{ID}' ? queue.id : formatDate(queue.createAt))
-              ),
-            },
-            template: 'queue',
-            data: {
-              id: queue.id,
-              name,
-              date: formatDate(queue.createAt),
-            },
-          })
-        })
+        Promise.all(results).then(async () =>
+          completeQueue({ email, pass, name, queue })
+        )
       }
     }),
 }
