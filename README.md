@@ -15,7 +15,7 @@ sending a personalized email to the recruiter.
 | PUT      | Add an candidate's recruiter     | api/candidates/:candidateId/recruiters       | ✅         |
 | DELETE   | Delete an candidate's recruiter  | api/candidates/:candidateId/recruiters       | ✅         |
 | GET      | Get an candidate's recruiters    | api/candidates/:candidateId/recruiters       | ✅         |
-| POST     | Create an candidate's queue      | api/candidates/:candidateId/queues           |            |
+| POST     | Create an candidate's queue      | api/candidates/:candidateId/queues           | ✅         |
 | GET      | Get an candidate's queues        | api/candidates/:candidateId/queues           |            |
 | GET      | Get an queue                     | api/candidates/:candidateId/queues/:queueId  |            |
 | POST     | Create an recruiter              | api/recruiters/                              | ✅         |
