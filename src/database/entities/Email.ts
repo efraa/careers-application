@@ -14,6 +14,7 @@ export class Email extends BaseEntity {
 
   @Column({
     transformer: [lowercase],
+    nullable: true,
   })
   message: string
 
@@ -29,7 +30,7 @@ export class Email extends BaseEntity {
   @Column()
   queueId: number
 
-  @ManyToOne(type => Queue, q => q.emails, {
+  @ManyToOne(() => Queue, q => q.emails, {
     onDelete: 'SET NULL',
     onUpdate: 'CASCADE',
   })

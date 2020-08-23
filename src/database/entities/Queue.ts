@@ -10,14 +10,14 @@ export class Queue extends BaseEntity {
   @Column()
   candidateId: number
 
-  @ManyToOne(type => Candidate, c => c.queues, {
+  @ManyToOne(() => Candidate, c => c.queues, {
     onDelete: 'SET NULL',
     onUpdate: 'CASCADE',
   })
   @JoinColumn()
   candidate: Candidate
 
-  @OneToMany(type => Email, email => email.queueId, {
+  @OneToMany(() => Email, email => email.queueId, {
     onDelete: 'SET NULL',
   })
   emails: Email[]
